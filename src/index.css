@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══ CSS CUSTOM PROPERTIES ═══ */
+:root {
+  --teal:      #0e7490;
+  --teal-dk:   #0c4a6e;
+  --teal-lt:   #e0f2fe;
+  --lime:      #84cc16;
+  --bg:        #f0f4f8;
+  --surface:   #ffffff;
+  --surface2:  #f8fafc;
+  --border:    #dde3ec;
+  --text:      #0f1f2e;
+  --text2:     #4a6077;
+  --text3:     #8ea5bb;
+  --success:   #16a34a;
+  --success-lt:#dcfce7;
+  --warning:   #d97706;
+  --warning-lt:#fef3c7;
+  --danger:    #dc2626;
+  --danger-lt: #fee2e2;
+  --sw:        228px;
+  --r:         10px;
+  --sh-sm:     0 1px 3px rgba(14,116,144,.08), 0 1px 2px rgba(0,0,0,.04);
+  --sh:        0 4px 12px rgba(14,116,144,.10), 0 1px 3px rgba(0,0,0,.06);
+  --sh-lg:     0 8px 24px rgba(14,116,144,.14);
+}
+
+.dark {
+  --bg:        #0a1628;
+  --surface:   #122238;
+  --surface2:  #1a3050;
+  --border:    #1e3a55;
+  --text:      #e8f1fb;
+  --text2:     #7fabc8;
+  --text3:     #3d6080;
+  --teal-lt:   #0c3044;
+  --success-lt:#052e16;
+  --warning-lt:#3b1500;
+  --danger-lt: #3b0000;
+}
+
+/* ═══ BASE ═══ */
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  min-height: 100vh;
+}
+
+/* ═══ SCROLLBAR ═══ */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+
+/* ═══ TABLE ═══ */
+table { width: 100%; border-collapse: collapse; }
+thead th {
+  position: sticky; top: 0; z-index: 5;
+  background: var(--surface2);
+  padding: 0.46rem 0.48rem;
+  text-align: left; font-weight: 700; font-size: 0.69rem;
+  color: var(--text2);
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap; cursor: pointer; user-select: none;
+}
+thead th:hover { color: var(--teal); }
+tbody tr { border-bottom: 1px solid var(--border); transition: background 0.1s; }
+tbody tr:hover { background: var(--teal-lt); }
+td { padding: 0.36rem 0.48rem; vertical-align: middle; white-space: nowrap; font-size: 0.69rem; }
+
+/* ═══ MARGIN BADGES ═══ */
+.mg-badge {
+  display: inline-flex; align-items: center; gap: 0.16rem;
+  padding: 0.1rem 0.38rem; border-radius: 5px;
+  font-size: 0.65rem; font-weight: 800; border: 1px solid transparent;
+}
+.mg-danger  { background: var(--danger-lt);  color: var(--danger);  border-color: rgba(220,38,38,.2); }
+.mg-warning { background: var(--warning-lt); color: var(--warning); border-color: rgba(217,119,6,.2); }
+.mg-success { background: var(--success-lt); color: var(--success); border-color: rgba(22,163,74,.2); }
+
+/* ═══ MULTISELECT ═══ */
+.ms-wrap { position: relative; display: inline-block; min-width: 200px; user-select: none; }
+.ms-trigger {
+  display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+  padding: 0.38rem 0.7rem; border-radius: 7px; border: 1px solid var(--border);
+  background: var(--surface); color: var(--text); font-size: 0.71rem; font-weight: 600;
+  cursor: pointer; white-space: nowrap;
+}
+.ms-trigger:hover { background: var(--surface2); }
+.ms-arrow { font-size: 0.6rem; color: var(--text2); transition: transform 0.2s; }
+.ms-wrap.open .ms-arrow { transform: rotate(180deg); }
+.ms-dropdown {
+  display: none; position: absolute; top: calc(100% + 4px); left: 0; min-width: 240px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: var(--r);
+  box-shadow: var(--sh-lg); z-index: 200;
+}
+.ms-wrap.open .ms-dropdown { display: block; }
+.ms-actions {
+  display: flex; gap: 0.4rem; padding: 0.45rem 0.6rem;
+  border-bottom: 1px solid var(--border); background: var(--surface2);
+}
+.ms-action-btn {
+  background: none; border: 1px solid var(--border); border-radius: 5px;
+  padding: 0.18rem 0.5rem; font-size: 0.62rem; font-weight: 700;
+  cursor: pointer; color: var(--text2); transition: background 0.12s;
+}
+.ms-action-btn:hover { background: var(--teal-lt); color: var(--teal-dk); }
+.ms-list { max-height: 230px; overflow-y: auto; padding: 0.3rem 0; }
+.ms-item {
+  display: flex; align-items: center; gap: 0.5rem;
+  padding: 0.38rem 0.7rem; font-size: 0.74rem; cursor: pointer; transition: background 0.1s;
+}
+.ms-item:hover { background: var(--teal-lt); }
+.ms-item input[type=checkbox] { width: 14px; height: 14px; accent-color: var(--teal); cursor: pointer; flex-shrink: 0; }
+.ms-item label { cursor: pointer; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ms-empty { padding: 0.6rem 0.7rem; font-size: 0.72rem; color: var(--text2); font-style: italic; }
